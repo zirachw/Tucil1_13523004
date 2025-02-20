@@ -1,0 +1,14 @@
+# Ignore Gradle project-specific cache directory
+.gradle
+
+# Ignore VSCode settings
+.vscode
+
+# Ignore IntelliJ IDEA settings
+.idea
+
+
+app/build/generated/
+app/build/resources/
+app/build/scripts/
+app/build/tmp/
