@@ -1,0 +1,10 @@
+Solution:
+   A   
+ AAABB 
+CCCCBBB
+ CDEEE 
+   E   
+
+Searching Time: 1ms
+
+Number of Cases: 39
