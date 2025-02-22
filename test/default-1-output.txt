@@ -1,0 +1,10 @@
+Solution:
+AABCC
+ABBCD
+EEEDD
+EEFFF
+GGGFF
+
+Searching Time: 340ms
+
+Number of Cases: 132503

@@ -1,0 +1,10 @@
+Solution:
+BBCAA
+BCCCA
+BACCA
+ACCCA
+AAAAA
+
+Searching Time: 1ms
+
+Number of Cases: 6

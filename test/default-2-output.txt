@@ -1,0 +1,9 @@
+Solution:
+ABBZ
+ABBZ
+AAZZ
+CAEE
+
+Searching Time: 2ms
+
+Number of Cases: 105
