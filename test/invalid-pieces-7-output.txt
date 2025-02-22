@@ -1,0 +1,4 @@
+Area of free cells is not equal to the area of the pieces. 
+~
+Found area of free cells: 25 units 
+Found area of the pieces: 24 units

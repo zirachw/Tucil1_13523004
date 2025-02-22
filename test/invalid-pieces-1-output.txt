@@ -1,0 +1,1 @@
+Found invalid line, expected continuation of puzzle pieces line for every newline
