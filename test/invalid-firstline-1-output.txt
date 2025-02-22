@@ -1,0 +1,1 @@
+First line must contain exactly three values: N, M, P. Found 2 values instead.

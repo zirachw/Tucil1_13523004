@@ -1,0 +1,1 @@
+N, M, and P must be positive integers. Found N = 0, M = 0, P = 0.
