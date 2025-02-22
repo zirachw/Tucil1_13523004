@@ -1,28 +1,27 @@
 package src;
 
+import java.util.Arrays;
 import javafx.application.Application;
-import javafx.scene.Scene;
-import javafx.scene.control.Label;
-import javafx.scene.layout.StackPane;
-import javafx.stage.Stage;
+import src.GUI.GUI;
 
-public class Main extends Application 
+public class Main 
 {
-
-    @Override
-    public void start(Stage stage) 
-    {
-        String javaVersion = System.getProperty("java.version");
-        String javafxVersion = System.getProperty("javafx.version");
-        Label l = new Label("Hello, JavaFX " + javafxVersion + ", running on Java " + javaVersion + ".");
-        Scene scene = new Scene(new StackPane(l), 640, 480);
-        stage.setScene(scene);
-        stage.show();
-    }
-
+    /**
+     * Main method to run the application
+     * Uses CLI if -cli is passed as an argument. Usage: java -jar IQPuzzlePro.jar -cli or ./gradlew run --args="-cli"
+     * Otherwise, uses GUI. Usage: java -jar IQPuzzlePro.jar or ./gradlew run
+     * 
+     * @param args Command line arguments
+     */
     public static void main(String[] args) 
     {
-        launch();
+        if (Arrays.asList(args).contains("-cli")) 
+        {
+            CLI.main(args);
+        } 
+        else 
+        {
+            Application.launch(GUI.class, args);
+        }
     }
-
 }
