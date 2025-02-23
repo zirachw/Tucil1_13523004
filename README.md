@@ -51,14 +51,14 @@ A simple interactive CLI and GUI program in Java language that implements the Br
 ### **Space for Improvement:** 
 
 1. **Implements Pyramid Puzzle Type**
-2. **Add `.txt` file option inside the App**
+2. **Implements `Add .txt file` option inside the App**
 
 
-### **Take a peek** 
+### **Take a peek:** 
 
 1. **The core logic is located at `~/src/app/src/main/java/src/`** 
-2. **There is additional `GUI` folder for the GUI program**
-3. **Create Pull Request and Collaborate together for project improvement**
+2. **There is an additional `GUI` folder for the GUI program**
+3. **Create Pull Request and Collaborate for project improvement**
 
 ## 📦 Installation & Run
 
@@ -69,7 +69,7 @@ A simple interactive CLI and GUI program in Java language that implements the Br
 
 ### Running the Application
 
-The application can be running in two modes: via **Command-Line Interface (CLI)** or **Graphical User Interface (GUI)**.
+The application can run in two modes: via **Command-Line Interface (CLI)** or **Graphical User Interface (GUI)**.
 
 #### **1. Command-Line Interface (CLI) Mode**
 - **Clone the repository**
@@ -80,7 +80,7 @@ The application can be running in two modes: via **Command-Line Interface (CLI)*
    java -jar Algeo01-23002.jar -cli
    ```
 
-- Alternatively, if want to run it using `Gradle`:
+- Alternatively, if you want to run it using `Gradle`:
    ```bash
    cd src
    ./gradlew run --quiet --warning-mode=none --console=plain --args="-cli"
@@ -95,7 +95,7 @@ The application can be running in two modes: via **Command-Line Interface (CLI)*
    java -jar Algeo01-23002.jar
    ```
 
-- Alternatively, if want to run it using `Gradle`:
+- Alternatively, if you want to run it using `Gradle`:
    ```bash
    cd src
    ./gradlew run
