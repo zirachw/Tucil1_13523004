@@ -85,6 +85,16 @@ public class Input
             return new FirstLine(-1, -1, -1, message);
         }
 
+        // Before parsing, check if the values are integers
+        for (String token : tokens) 
+        {
+            if (!token.matches("\\d+")) 
+            {
+                String message = "N, M, and P must be positive integers. Found " + tokens[0] + ", " + tokens[1] + ", " + tokens[2] + " instead.";
+                return new FirstLine(-1, -1, -1, message);
+            }
+        }
+
         int n = Integer.parseInt(tokens[0]);
         int m = Integer.parseInt(tokens[1]);
         int p = Integer.parseInt(tokens[2]);
