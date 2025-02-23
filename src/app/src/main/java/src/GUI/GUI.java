@@ -278,6 +278,10 @@ public class GUI extends Application
             @Override
             public void handle(WindowEvent e) 
             {
+                File currentDir = new File(System.getProperty("user.dir"));
+                File file = new File(currentDir.getParentFile().getParentFile() + "/test/" + "temp" + "-output.png");
+        
+                if (file.exists()) file.delete();
                 System.exit(0);
             }
         });
@@ -500,11 +504,6 @@ public class GUI extends Application
      */
     private void handleFindButtonClick() 
     {
-        File currentDir = new File(System.getProperty("user.dir"));
-        File file = new File(currentDir.getParentFile().getParentFile() + "/test/" + "temp" + "-output.png");
-
-        if (file.exists()) file.delete();
-
         String testCase = testCaseInput.getText();
         if (testCase.isEmpty()) 
         {
@@ -598,14 +597,6 @@ public class GUI extends Application
                     {
                         searchTime = endTime - startTime;
                         numCases = bf.getAttempts();
-                        
-                        File outputImage = new File(currentDir.getParentFile().getParentFile() + 
-                                                  "/test/" + fileName + "-output.png");
-
-                        if (outputImage.exists()) 
-                        {
-                            outputImage.delete();
-                        }
 
                         PuzzleImage image = new PuzzleImage(board);
                         image.saveToImage("temp");
