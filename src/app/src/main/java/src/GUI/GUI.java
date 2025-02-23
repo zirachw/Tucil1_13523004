@@ -233,6 +233,18 @@ public class GUI extends Application
         mainLayout.getChildren().addAll(sidebarWrapper, separator, mainContent);
 
         Scene scene = new Scene(mainLayout);
+
+        // add icon
+        try 
+        {
+            Image icon = new Image(getClass().getResourceAsStream("/images/icon.png"));
+            stage.getIcons().add(icon);
+        } 
+        catch (Exception e) 
+        {
+            System.err.println("Error loading icon: " + e.getMessage());
+        }
+        
         stage.setTitle("IQ Puzzler Pro Solver");
         stage.setMaximized(true);
 
@@ -318,7 +330,7 @@ public class GUI extends Application
         try 
         {
             File currentDir = new File(System.getProperty("user.dir"));
-            File outputImage = new File(currentDir.getParentFile().getParentFile() + "/test/" + fileName + "-output.png");
+            File outputImage = new File(currentDir.getParentFile().getParentFile() + "/test/" + "temp" + "-output.png");
             Image image = new Image(outputImage.toURI().toString());
             ImageView solutionImage = new ImageView(image);
             
@@ -488,6 +500,11 @@ public class GUI extends Application
      */
     private void handleFindButtonClick() 
     {
+        File currentDir = new File(System.getProperty("user.dir"));
+        File file = new File(currentDir.getParentFile().getParentFile() + "/test/" + "temp" + "-output.png");
+
+        if (file.exists()) file.delete();
+
         String testCase = testCaseInput.getText();
         if (testCase.isEmpty()) 
         {
@@ -591,7 +608,7 @@ public class GUI extends Application
                         }
 
                         PuzzleImage image = new PuzzleImage(board);
-                        image.saveToImage(fileName);
+                        image.saveToImage("temp");
                         
                         Platform.runLater(() -> 
                         {
@@ -603,6 +620,7 @@ public class GUI extends Application
                             loadTestCases();
                         });
                         
+
                         return true;
                     } 
                     else 
@@ -645,8 +663,22 @@ public class GUI extends Application
         try 
         {
             OutputGUI output = new OutputGUI(fileName, board, searchTime, numCases);
-            output.saveToText();
-            showInfo("Successfully saved solution to " + fileName + "-output.txt");
+            File txtFile = output.getOutputTextFile();
+
+            if (txtFile.exists()) 
+            {
+                if(output.shouldOverwrite(txtFile))
+                {
+                    txtFile.delete();
+                    output.saveToText();
+                    showInfo("Successfully saved solution to " + fileName + "-output.txt");
+                }
+            }
+            else
+            {
+                output.saveToText();
+                showInfo("Successfully saved solution to " + fileName + "-output.txt");
+            }
             clearTestCases();
             loadTestCases();
         } 
@@ -664,9 +696,24 @@ public class GUI extends Application
         try 
         {
             OutputGUI output = new OutputGUI(fileName, board, searchTime, numCases);
-            output.saveToImage();
-            showInfo("Successfully saved solution to " + fileName + "-output.png");
-            
+            File pngFile = output.getOutputImageFile();
+
+            if (pngFile.exists())
+            {
+                if(output.shouldOverwrite(pngFile))
+                {   
+                    pngFile.delete();
+                    output.saveToImage();
+                    showInfo("Successfully saved image to " + fileName + "-output.png");
+                }
+            }
+            else
+            {
+                output.saveToImage();
+                showInfo("Successfully saved image to " + fileName + "-output.png");
+            }
+            clearTestCases();
+            loadTestCases();
         } 
         catch (Exception e) 
         {

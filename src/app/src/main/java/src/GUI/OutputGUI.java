@@ -73,11 +73,6 @@ public class OutputGUI
      */
     public void saveToImage() throws IOException 
     {
-        File pngFile = getOutputImageFile();
-        if (!shouldOverwrite(pngFile)) return;
-
-        if (pngFile.exists()) pngFile.delete();
-
         PuzzleImage image = new PuzzleImage(board);
         image.saveToImage(fileName);
     }
@@ -88,7 +83,7 @@ public class OutputGUI
      * @param file File to overwrite
      * @return true if the file should be overwritten, false otherwise
      */
-    private boolean shouldOverwrite(File file) 
+    public boolean shouldOverwrite(File file) 
     {
         if (!file.exists()) return true;
 
