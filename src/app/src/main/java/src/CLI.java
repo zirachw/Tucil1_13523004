@@ -19,9 +19,9 @@ public class CLI {
         {
             System.out.print("\033[H\033[2J");
             System.out.println();
-            System.out.println("Welcome to the Puzzle Solver!");
+            System.out.println("[#] Welcome to the IQ Puzzle PRO Solver!");
             System.out.println();
-            System.out.println("Specify the filename (without extension) of the puzzle input file:");
+            System.out.println("[?] Specify the filename (without extension) of the puzzle input file:");
             String fileName = scanner.nextLine();
             
             System.out.println();
@@ -31,16 +31,16 @@ public class CLI {
                 System.out.println(errorMsg);
 
                 Board board = new Board(0, 0, 0, errorMsg, null);
-                System.out.println("\nSave the output to a file? (Y/N)");
-                Output.confirmCLI(fileName, board, 0, 0);
-
+                System.out.println("\n[?] Save the output to a file? (Y/N)");
+                Output.confirmError(fileName, board);
+                System.out.println("[#] Thank you for using the IQ Puzzle Pro Solver!\n");
                 scanner.close();
                 return;
             }
 
             File currentDir = new File(System.getProperty("user.dir"));
-            File testDir = currentDir.getParentFile().getParentFile();
-            File file = new File(testDir + "/test/" + fileName + ".txt");
+            File parentDir = currentDir.getParentFile().getParentFile();
+            File file = new File(parentDir + "/test/" + fileName + ".txt");
             String absolutePath = file.getAbsolutePath();
 
             if (Input.validateFile(file) != null) 
@@ -49,9 +49,9 @@ public class CLI {
                 System.out.println(errorMsg);
 
                 Board board = new Board(0, 0, 0, errorMsg, null);
-                System.out.println("\nSave the output to a file? (Y/N)");
-                Output.confirmCLI(fileName, board, 0, 0);
-                
+                System.out.println("\n[?] Save the output to a file? (Y/N)");
+                Output.confirmError(fileName, board);
+                System.out.println("[#] Thank you for using the IQ Puzzle Pro Solver!\n");
                 scanner.close();
                 return;
             }
@@ -64,10 +64,9 @@ public class CLI {
                 System.out.println(errorMsg);
 
                 Board board = new Board(0, 0, 0, errorMsg, null);
-                System.out.println("\nSave the output to a file? (Y/N)");
-                Output.confirmCLI(fileName, board, 0, 0);
-                
-                scanner.close();
+                System.out.println("\n[?] Save the output to a file? (Y/N)");
+                Output.confirmError(fileName, board);
+                System.out.println("[#] Thank you for using the IQ Puzzle Pro Solver!\n");
                 scanner.close();
             }
             else
@@ -81,9 +80,9 @@ public class CLI {
                     System.out.println(errorMsg);
 
                     board = new Board(0, 0, 0, errorMsg, null);
-                    System.out.println("\nSave the output to a file? (Y/N)");
-                    Output.confirmCLI(fileName, board, 0, 0);
-                    
+                    System.out.println("\n[?] Save the output to a file? (Y/N)");
+                    Output.confirmError(fileName, board);
+                    System.out.println("[#] Thank you for using the IQ Puzzle Pro Solver!\n");
                     scanner.close();
                     return;
                 }
@@ -94,9 +93,9 @@ public class CLI {
                     System.out.println(errorMsg);
 
                     board = new Board(0, 0, 0, errorMsg, null);
-                    System.out.println("\nSave the output to a file? (Y/N)");
-                    Output.confirmCLI(fileName, board, 0, 0);
-                    
+                    System.out.println("\n[?] Save the output to a file? (Y/N)");
+                    Output.confirmError(fileName, board);
+                    System.out.println("[#] Thank you for using the IQ Puzzle Pro Solver!\n");
                     scanner.close();
                     return;
                 }
@@ -115,22 +114,23 @@ public class CLI {
                     System.out.println("Searching Time: " + (endTime - startTime) + " ms");
                     System.out.println();
                     System.out.println("Number of Cases: " + bf.getAttempts());
-
-                    System.out.println("\nSave the output to a file? (Y/N)");
-                    Output.confirmCLI(fileName, board, endTime - startTime, bf.getAttempts());
-                    
+                    Output.confirmOptionCLI(fileName, board, endTime - startTime, bf.getAttempts());
                     scanner.close();
+                    System.out.println("[#] Thank you for using the IQ Puzzle Pro Solver!\n");
                 } 
                 else 
                 {
                     System.out.println("\nNo solution found.");
+                    Output output = new Output(fileName, board, 0, 0);
+                    output.saveToTextCLI();
+                    System.out.println("[#] Thank you for using the IQ Puzzle Pro Solver!\n");
                     scanner.close();
                 }
             }
         } 
         catch (IOException e) 
         {
-            System.out.println("An error occurred while reading the file. Please try again.");
+            System.out.println("[!] An error occurred while reading the file. Please try again.");
             scanner.close();
             return;
         }
