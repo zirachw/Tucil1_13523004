@@ -196,7 +196,7 @@ public class Piece
             // Check if we have duplicate pieces with the same letter.
             if (unique.contains(pieceLetter)) 
             {
-                return new Piece[] { new Piece(-1, -1, null, "There are duplicate pieces. Found " + pieceLetter + " twice") };
+                return new Piece[] { new Piece(-1, -1, null, "There are duplicate pieces. Found letter '" + pieceLetter + "'' twice") };
             }
             unique.add(pieceLetter);
             
