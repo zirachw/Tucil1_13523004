@@ -1,0 +1,10 @@
+Solution:
+JJBBFAEEC
+BBBFFAECC
+HHDAAAECI
+HDDGGGGII
+DDKKKKKII
+
+Searching Time: 11575ms
+
+Number of Cases: 4984477
