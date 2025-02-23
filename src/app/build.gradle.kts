@@ -52,3 +52,14 @@ tasks.named<Test>("test") {
     // Use JUnit Platform for unit tests.
     useJUnitPlatform()
 }
+
+tasks.jar {
+    manifest {
+        attributes(
+            "Main-Class" to "src.Main"
+        )
+    }
+    from(configurations.runtimeClasspath.get().map { if (it.isDirectory) it else zipTree(it) })
+    // Handle duplicate files
+    duplicatesStrategy = DuplicatesStrategy.EXCLUDE
+}
