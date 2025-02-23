@@ -51,7 +51,7 @@ A simple interactive CLI and GUI program in Java language that implements the Br
 ### **Space for Improvement:** 
 
 1. **Implements Pyramid Puzzle Type**
-2. **Implements `Add .txt file` option inside the App**
+2. **Implements `Add .txt file` feature inside the App, instead manually adding**
 
 
 ### **Take a peek:** 
