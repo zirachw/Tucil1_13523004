@@ -7,17 +7,16 @@ import java.io.File;
 import java.io.IOException;
 import java.util.Scanner;
 
-public class Image extends JPanel 
+public class PuzzleImage extends JPanel 
 {
     private static final int CELL_SIZE = 40;
     private static final int CIRCLE_PADDING = 4;
-    private static final int JOINT_WIDTH = 12;
-    private static final int JOINT_HEIGHT = 6;
-    private static final int DIAGONAL_JOINT_WIDTH = 8; // Width of diagonal joint
+    private static final int JOINT_WIDTH = 12;  // Width of the connecting joint
+    private static final int JOINT_HEIGHT = 6;  // Height of the connecting joint
     private static final Color EMPTY_CELL_COLOR = new Color(40, 40, 40);
     private Board board;
     
-    public Image(Board board) 
+    public PuzzleImage(Board board) 
     {
         this.board = board;
         int width = board.getWidth() * CELL_SIZE;
@@ -37,7 +36,7 @@ public class Image extends JPanel
     {
         g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
         
-        // First pass: Draw base circles
+        // First pass: Draw all base circles
         for (int i = 0; i < board.getHeight(); i++) 
         {
             for (int j = 0; j < board.getWidth(); j++) 
@@ -47,7 +46,7 @@ public class Image extends JPanel
             }
         }
         
-        // Second pass: Draw connecting joints (horizontal, vertical, and diagonal)
+        // Second pass: Draw connecting joints
         for (int i = 0; i < board.getHeight(); i++) 
         {
             for (int j = 0; j < board.getWidth(); j++) 
@@ -90,7 +89,8 @@ public class Image extends JPanel
         {
             g2d.setColor(getColorForLetter(letter));
             g2d.fill(circle);
-        } else 
+        } 
+        else 
         {
             g2d.setColor(EMPTY_CELL_COLOR);
             g2d.setStroke(new BasicStroke(1.5f));
@@ -100,132 +100,36 @@ public class Image extends JPanel
     
     private void drawJoints(Graphics2D g2d, int row, int col, char letter) 
     {
+        int x = col * CELL_SIZE;
+        int y = row * CELL_SIZE;
         Color pieceColor = getColorForLetter(letter);
         g2d.setColor(pieceColor);
-        
-        boolean hasHorizontalOrVerticalJoint = false;
         
         // Check and draw horizontal joints
         if (col < board.getWidth() - 1 && board.getElement(row, col + 1) == letter) 
         {
-            drawHorizontalJoint(g2d, row, col);
-            hasHorizontalOrVerticalJoint = true;
+            // Draw horizontal joint
+            Rectangle2D.Double horizontalJoint = new Rectangle2D.Double(
+                x + CELL_SIZE - CIRCLE_PADDING,
+                y + (CELL_SIZE - JOINT_HEIGHT) / 2,
+                JOINT_WIDTH,
+                JOINT_HEIGHT
+            );
+            g2d.fill(horizontalJoint);
         }
         
         // Check and draw vertical joints
         if (row < board.getHeight() - 1 && board.getElement(row + 1, col) == letter) 
         {
-            drawVerticalJoint(g2d, row, col);
-            hasHorizontalOrVerticalJoint = true;
+            // Draw vertical joint
+            Rectangle2D.Double verticalJoint = new Rectangle2D.Double(
+                x + (CELL_SIZE - JOINT_HEIGHT) / 2,
+                y + CELL_SIZE - CIRCLE_PADDING,
+                JOINT_HEIGHT,
+                JOINT_WIDTH
+            );
+            g2d.fill(verticalJoint);
         }
-        
-        // Only check for diagonal joints if there are no horizontal or vertical joints
-        if (!hasHorizontalOrVerticalJoint) {
-            // Check diagonal connections
-            boolean canConnectDiagonally = false;
-            
-            // Check bottom-right diagonal
-            if (row < board.getHeight() - 1 && col < board.getWidth() - 1) 
-            {
-                if (board.getElement(row + 1, col + 1) == letter &&
-                    board.getElement(row + 1, col) != letter &&
-                    board.getElement(row, col + 1) != letter) 
-                {
-                    drawDiagonalJoint(g2d, row, col, true);
-                    canConnectDiagonally = true;
-                }
-            }
-            
-            // Check bottom-left diagonal
-            if (row < board.getHeight() - 1 && col > 0) 
-            {
-                if (board.getElement(row + 1, col - 1) == letter &&
-                    board.getElement(row + 1, col) != letter &&
-                    board.getElement(row, col - 1) != letter) 
-                {
-                    drawDiagonalJoint(g2d, row, col, false);
-                    canConnectDiagonally = true;
-                }
-            }
-            
-            // Check top-right diagonal
-            if (row > 0 && col < board.getWidth() - 1) 
-            {
-                if (board.getElement(row - 1, col + 1) == letter &&
-                    board.getElement(row - 1, col) != letter &&
-                    board.getElement(row, col + 1) != letter) 
-                {
-                    drawDiagonalJoint(g2d, row - 1, col, false);
-                    canConnectDiagonally = true;
-                }
-            }
-            
-            // Check top-left diagonal
-            if (row > 0 && col > 0) 
-            {
-                if (board.getElement(row - 1, col - 1) == letter &&
-                    board.getElement(row - 1, col) != letter &&
-                    board.getElement(row, col - 1) != letter) 
-                {
-                    drawDiagonalJoint(g2d, row - 1, col, true);
-                    canConnectDiagonally = true;
-                }
-            }
-        }
-    }
-    
-    private void drawHorizontalJoint(Graphics2D g2d, int row, int col) 
-    {
-        int x = col * CELL_SIZE;
-        int y = row * CELL_SIZE;
-        Rectangle2D.Double horizontalJoint = new Rectangle2D.Double(
-            x + CELL_SIZE - CIRCLE_PADDING,
-            y + (CELL_SIZE - JOINT_HEIGHT) / 2,
-            JOINT_WIDTH,
-            JOINT_HEIGHT
-        );
-        g2d.fill(horizontalJoint);
-    }
-    
-    private void drawVerticalJoint(Graphics2D g2d, int row, int col) 
-    {
-        int x = col * CELL_SIZE;
-        int y = row * CELL_SIZE;
-        Rectangle2D.Double verticalJoint = new Rectangle2D.Double(
-            x + (CELL_SIZE - JOINT_HEIGHT) / 2,
-            y + CELL_SIZE - CIRCLE_PADDING,
-            JOINT_HEIGHT,
-            JOINT_WIDTH
-        );
-        g2d.fill(verticalJoint);
-    }
-    
-    private void drawDiagonalJoint(Graphics2D g2d, int row, int col, boolean isRightDiagonal) 
-    {
-        int x = col * CELL_SIZE;
-        int y = row * CELL_SIZE;
-        
-        // Save the current transform
-        AffineTransform oldTransform = g2d.getTransform();
-        
-        // Move to the center of the joint location
-        g2d.translate(x + CELL_SIZE / 2, y + CELL_SIZE / 2);
-        
-        // Rotate 45 or -45 degrees depending on the diagonal direction
-        double angle = isRightDiagonal ? Math.PI / 4 : -Math.PI / 4;
-        g2d.rotate(angle);
-        
-        // Draw the diagonal joint
-        Rectangle2D.Double diagonalJoint = new Rectangle2D.Double(
-            -DIAGONAL_JOINT_WIDTH / 2,
-            -JOINT_HEIGHT / 2,
-            DIAGONAL_JOINT_WIDTH,
-            JOINT_HEIGHT
-        );
-        g2d.fill(diagonalJoint);
-        
-        // Restore the original transform
-        g2d.setTransform(oldTransform);
     }
     
     private void drawLetter(Graphics2D g2d, int row, int col, char letter) 
@@ -261,12 +165,17 @@ public class Image extends JPanel
     {
         JFrame frame = new JFrame("Puzzle Board");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.add(new Image(board));
+        frame.add(new PuzzleImage(board));
         frame.pack();
         frame.setLocationRelativeTo(null);
         frame.setVisible(true);
     }
-    
+        
+    /**
+     * Saves the board to an image file.
+     * 
+     * @param filename Name of the image file
+     */
     public void saveToImage(String filename)
     {
         int width = board.getWidth() * CELL_SIZE;
