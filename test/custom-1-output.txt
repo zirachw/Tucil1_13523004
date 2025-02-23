@@ -5,6 +5,6 @@ CCCCBBB
  CDEEE 
    E   
 
-Searching Time: 14ms
+Searching Time: 2ms
 
 Number of Cases: 39
