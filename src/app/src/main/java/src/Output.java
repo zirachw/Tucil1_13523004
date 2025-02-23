@@ -4,6 +4,9 @@ import java.io.File;
 import java.io.IOException;
 import java.util.Scanner;
 
+/**
+ * Output class to save the puzzle solution to a file.
+ */
 public class Output 
 {
     private String fileName;
@@ -31,6 +34,9 @@ public class Output
     public long getTime() {return this.time;}
     public int getAttempts() {return this.attempts;}
 
+    /**
+     * Saves the output of invalid format errors to a file.
+     */
     public static void confirmError(String filename, Board board)
     {
         Scanner scanner = new Scanner(System.in);
@@ -75,6 +81,9 @@ public class Output
         return;
     }
 
+    /**
+     * Saves the output of the puzzle solution to a file with options.
+     */
     public static void confirmOptionCLI(String filename, Board board, long time, int attempts)
     {
         System.out.println("\nSave the output to a file?");
@@ -111,7 +120,7 @@ public class Output
                 }
                 else if (option == 2)
                 {
-                    Image image = new Image(board);
+                    PuzzleImage image = new PuzzleImage(board);
                     image.saveToImage(filename);
                     System.out.println("[~] Successfully saved as '" + filename + "-output.png'.\n");
                     valid = true;
@@ -141,6 +150,9 @@ public class Output
         return;
     }
 
+    /**
+     * Saves only the text output of the puzzle solution to a file.
+     */
     public void saveToTextCLI()
     {
         File currentDir = new File(System.getProperty("user.dir"));
@@ -191,6 +203,9 @@ public class Output
         }
     }
 
+    /**
+     * Writes the text output of the puzzle solution to a file.
+     */
     public void writeTextCLI(String path)
     {
         File currentDir = new File(System.getProperty("user.dir"));
@@ -235,7 +250,7 @@ public class Output
                 writer.write("\n");
                 writer.write("Searching Time: " + getTime() + "ms\n");
                 writer.write("\n");
-                writer.write("Number of Cases: " + getAttempts());
+                writer.write("Number of Iterations: " + getAttempts());
                 writer.close();
                 return;
             }
@@ -247,6 +262,9 @@ public class Output
         }
     }
 
+    /**
+     * Saves both the text and image output of the puzzle solution to files.
+     */
     public void saveToTextImageCLI()
     {
         File currentDir = new File(System.getProperty("user.dir"));
@@ -288,7 +306,7 @@ public class Output
                 }
             }
 
-            Image image = new Image(getBoard());
+            PuzzleImage image = new PuzzleImage(getBoard());
             image.saveToImage(getFilename());
             scanner.close();
             return;
@@ -296,7 +314,7 @@ public class Output
         else
         {
             writeTextCLI(txtPath);
-            Image image = new Image(getBoard());
+            PuzzleImage image = new PuzzleImage(getBoard());
             image.saveToImage(getFilename());
             return;
         }
