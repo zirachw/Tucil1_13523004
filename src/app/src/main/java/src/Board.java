@@ -2,6 +2,9 @@ package src;
 
 import java.util.ArrayList;
 
+/**
+ * Represents a board for the puzzle.
+ */
 public class Board 
 {
     private int N;
