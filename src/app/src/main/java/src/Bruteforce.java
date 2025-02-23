@@ -1,5 +1,8 @@
 package src;
 
+/**
+ * Bruteforce main logic.
+ */
 public class Bruteforce 
 {
     private int attempts;
@@ -7,10 +10,7 @@ public class Bruteforce
     private Piece[] pieces;
     private Piece[][] permutations;
 
-    public int getAttempts() 
-    {
-        return this.attempts;
-    }
+    public int getAttempts() {return this.attempts;}
 
     /**
      * Constructs a Bruteforce object with the provided parameters.
