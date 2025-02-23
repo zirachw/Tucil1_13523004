@@ -6,6 +6,9 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
 
+/**
+ * Input class to read and parse puzzle input from a .txt file and return an Input object.
+ */
 public class Input 
 {
     private int N;
