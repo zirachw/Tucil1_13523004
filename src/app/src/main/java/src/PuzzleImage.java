@@ -7,6 +7,9 @@ import java.io.File;
 import java.io.IOException;
 import java.util.Scanner;
 
+/**
+ * PuzzleImage class to display the puzzle board as an image.
+ */
 public class PuzzleImage extends JPanel 
 {
     private static final int CELL_SIZE = 40;
