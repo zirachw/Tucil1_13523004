@@ -4,6 +4,6 @@ ABBZ
 AAZZ
 CAEE
 
-Searching Time: 2ms
+Searching Time: 11ms
 
 Number of Cases: 105

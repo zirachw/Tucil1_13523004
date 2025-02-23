@@ -5,6 +5,6 @@ EEEDD
 EEFFF
 GGGFF
 
-Searching Time: 340ms
+Searching Time: 378ms
 
 Number of Cases: 132503
