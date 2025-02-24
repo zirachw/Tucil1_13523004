@@ -504,6 +504,11 @@ public class GUI extends Application
      */
     private void handleFindButtonClick() 
     {
+        File currentDir = new File(System.getProperty("user.dir"));
+        File file = new File(currentDir.getParentFile().getParentFile() + "/test/" + "temp" + "-output.png");
+
+        if (file.exists()) file.delete();
+
         String testCase = testCaseInput.getText();
         if (testCase.isEmpty()) 
         {
