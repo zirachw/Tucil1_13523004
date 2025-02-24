@@ -4,6 +4,6 @@ ABBZ
 AAZZ
 CAEE
 
-Searching Time: 1ms
+Searching Time: 0ms
 
-Number of Cases: 105
+Number of Iterations: 105
