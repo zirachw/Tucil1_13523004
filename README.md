@@ -1,5 +1,5 @@
 # 💡 IQ Puzzler Pro Solver
-A simple interactive CLI and GUI program in Java language that implements the Brute Force algorithm to find solutions in the [**IQ Puzzler Pro**](https://www.smartgamesusa.com) game.
+A simple interactive CLI and GUI program in Java that implements the Brute Force algorithm to find solutions in the [**IQ Puzzler Pro**](https://www.smartgamesusa.com) game.
 
 ---
 
@@ -77,7 +77,7 @@ The application can run in two modes: via **Command-Line Interface (CLI)** or **
    
    ```bash
    cd bin/src
-   java -jar Algeo01-23002.jar -cli
+   java -jar app.jar -cli
    ```
 
 - Alternatively, if you want to run it using `Gradle`:
@@ -92,7 +92,7 @@ The application can run in two modes: via **Command-Line Interface (CLI)** or **
    
    ```bash
    cd bin/src
-   java -jar Algeo01-23002.jar
+   java -jar app.jar
    ```
 
 - Alternatively, if you want to run it using `Gradle`:
